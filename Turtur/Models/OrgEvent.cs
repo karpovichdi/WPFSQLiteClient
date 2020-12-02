@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Turtur
+﻿namespace Turtur.Models
 {
     class OrgEvent
     {
@@ -18,8 +14,7 @@ namespace Turtur
         public int Money { get; set; }
         public int Cats { get; set; }
         public int Employees { get; set; }
-
-
+        
         public OrgEvent() { }
 
         public OrgEvent(int name, int investors, int cars, int sales, int customer, int resources, int money, int cats, int employees)

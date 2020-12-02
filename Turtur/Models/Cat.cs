@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Turtur
+﻿namespace Turtur.Models
 {
-    class Cat
+    public class Cat
     {
         private string name;
 

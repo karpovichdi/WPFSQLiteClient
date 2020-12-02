@@ -17,4 +17,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Pages\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>
