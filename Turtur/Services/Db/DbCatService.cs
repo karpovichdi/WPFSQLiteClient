@@ -91,5 +91,22 @@ namespace Turtur.Services.Db
             createCommandResult.ExecuteNonQuery();
             conn.Close();
         }
+
+        public void UpdateCat(int id, string name, int cost, int weight)
+        {
+            using SQLiteConnection conn = new SQLiteConnection(Constants.Paths.PathToDB);
+            conn.Open();
+
+            var columnName = '"' + name + '"';
+            
+            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cats} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Cost} = {cost}, {Constants.TableFields.Weight} = {weight} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {id};";
+            
+            var executedCommand = new SQLiteCommand(stringQuery, conn).ExecuteReader();
+            var createCommandResult = conn.CreateCommand();
+            
+            createCommandResult.CommandText = stringQuery;
+            createCommandResult.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

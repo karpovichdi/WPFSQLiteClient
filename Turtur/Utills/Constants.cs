@@ -13,6 +13,9 @@ namespace Turtur.Utills
         {
             public const string SelectAll = "Select * from ";
             public const string InsertInto = "INSERT INTO ";
+            public static string Update = "UPDATE ";
+            public static string Set = "SET";
+            public static string Where = "WHERE";
         }
         
         public static class TableNames
