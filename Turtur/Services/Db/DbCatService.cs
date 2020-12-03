@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Reflection.Metadata;
 using Turtur.Models;
 using Turtur.Utills;
 
@@ -73,6 +74,22 @@ namespace Turtur.Services.Db
             }
 
             return 0;
+        }
+
+        public void AddNewCat(string name, int cost, int weight)
+        {
+            using SQLiteConnection conn = new SQLiteConnection(Constants.Paths.PathToDB);
+            conn.Open();
+
+            var columnName = '"' + name + '"';
+            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cats}({Constants.TableFields.Cost},{Constants.TableFields.Name},{Constants.TableFields.Weight})Values({cost},{columnName},{weight})";
+            
+            var executedCommand = new SQLiteCommand(stringQuery, conn).ExecuteReader();
+            var createCommandResult = conn.CreateCommand();
+            
+            createCommandResult.CommandText = stringQuery;
+            createCommandResult.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }

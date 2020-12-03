@@ -13,6 +13,8 @@ namespace Turtur.Pages
 
             _dbCatService = new DbCatService();
             
+            _dbCatService.AddNewCat("NotIgor", 16, 7);
+            
             var cats = _dbCatService.GetAllCats();
         }
     }

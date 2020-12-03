@@ -12,11 +12,12 @@ namespace Turtur.Utills
         public static class SqlCommands
         {
             public const string SelectAll = "Select * from ";
+            public const string InsertInto = "INSERT INTO ";
         }
         
         public static class TableNames
         {
-            public const string Cats = "cats";
+            public const string Cats = "Cats";
         }
         
         public static class TableFields
