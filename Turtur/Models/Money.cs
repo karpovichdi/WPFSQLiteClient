@@ -1,23 +1,16 @@
 ﻿namespace Turtur.Models
 {
-    class Money
+    public class Money
     {
-        private string transactionName;
-
-        private int id, cost;
-
-        public string TransactionName { get; set; }
-
-        public int Cost { get; set; }
-
-        public int Id { get; set; }
-
-        public Money() { }
-
-        public Money(string transactionName, int cost)
+        public readonly string TransactionName;
+        public readonly int Id;
+        public readonly int Cost;
+        
+        public Money(string transactionName, int cost, int id)
         {
-            this.transactionName = transactionName;
-            this.cost = cost;
+            TransactionName = transactionName;
+            Cost = cost;
+            Id = id;
         }
     }
 }

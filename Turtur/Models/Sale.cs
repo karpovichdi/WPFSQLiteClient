@@ -1,26 +1,18 @@
 ﻿namespace Turtur.Models
 {
-    class Sale
+    public class Sale
     {
-        private string date;
+        public readonly string Date;
+        public readonly int Customer;
+        public readonly int Cat;
+        public readonly int Id;
 
-        private int id, customer, cat;
-
-        public string Date { get; set; }
-
-        public int Customer { get; set; }
-
-        public int Cat { get; set; }
-
-        public int Id { get; set; }
-
-        public Sale() { }
-
-        public Sale(string date, int customer, int cat)
+        public Sale(string date, int customer, int cat, int id)
         {
-            this.date = date;
-            this.customer = customer;
-            this.cat = cat;
+            Date = date;
+            Customer = customer;
+            Cat = cat;
+            Id = id;
         }
     }
 }

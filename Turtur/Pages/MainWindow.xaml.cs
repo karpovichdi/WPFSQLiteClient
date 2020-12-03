@@ -1,23 +1,34 @@
 ﻿using System.Windows;
+using Turtur.Models;
 using Turtur.Services.Db;
 
 namespace Turtur.Pages
 {
     public partial class MainWindow : Window
     {
-        private readonly DbCatService _dbCatService;
-        
         public MainWindow()
         {
             InitializeComponent();
 
-            _dbCatService = new DbCatService();
+            var dbCarService = new DbCustomerService();
             
-            // _dbCatService.AddNewCat("NotIgor", 16, 7);
+            var c1 = dbCarService.GetAll();
 
-            _dbCatService.UpdateCat(3, "NotIgor", 9, 7);
+            var cat1 = new Customer(1,"customer","phone");
             
-            var cats = _dbCatService.GetAllCats();
+            dbCarService.AddNew(cat1);
+            
+            var c2 = dbCarService.GetAll();
+            
+            var cat2 = new Customer(1,"customer1","phone1");
+            
+            dbCarService.UpdateById(cat2);
+            
+            var c3 = dbCarService.GetAll();
+            
+            dbCarService.DeleteById(1);
+            
+            var c4 = dbCarService.GetAll();
         }
     }
 }

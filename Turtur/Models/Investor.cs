@@ -1,20 +1,14 @@
 ﻿namespace Turtur.Models
 {
-    class Investor
+    public class Investor
     {
-        private string name;
+        public readonly string Name;
+        public readonly int Id;
 
-        private int id;
-
-        public string Name { get; set; }
-
-        public int Id { get; set; }
-
-        public Investor() { }
-
-        public Investor(string name)
+        public Investor(string name, int id)
         {
-            this.name = name;
+            Name = name;
+            Id = id;
         }
     }
 }

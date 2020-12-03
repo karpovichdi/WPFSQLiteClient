@@ -2,25 +2,17 @@
 {
     public class Cat
     {
-        private string name;
+        public readonly string Name;
+        public readonly int Weight;
+        public readonly int Cost;
+        public readonly int Id;
 
-        private int id, weight, cost;
-
-        public string Name { get; set; }
-
-        public int Id { get; set; }
-
-        public int Weight { get; set; }
-
-        public int Cost { get; set; }
-
-        public Cat() { }
-
-        public Cat(string name, int weight, int cost)
+        public Cat(int id, int weight, int cost, string name)
         {
-            this.name = name;
-            this.weight = weight;
-            this.cost = cost;
+            Name = name;
+            Weight = weight;
+            Cost = cost;
+            Id = id;
         }
     }
 }

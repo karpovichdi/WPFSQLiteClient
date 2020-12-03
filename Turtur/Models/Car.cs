@@ -1,20 +1,14 @@
 ﻿namespace Turtur.Models
 {
-    class Car
+    public class Car
     {
-        private string name;
+        public readonly string Name;
+        public readonly int Id;
 
-        private int id;
-
-        public string Name { get; set; }
-
-        public int Id { get; set; }
-
-        public Car() { }
-
-        public Car(string name)
+        public Car(int id, string name)
         {
-            this.name = name;
+            Name = name;
+            Id = id;
         }
     }
 }

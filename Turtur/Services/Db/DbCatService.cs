@@ -1,112 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Reflection.Metadata;
 using Turtur.Models;
 using Turtur.Utills;
+using Turtur.Utills.Helpers.Db;
 
 namespace Turtur.Services.Db
 {
     public class DbCatService
     {
-        public List<Cat> GetAllCats()
+        public void AddNew(Cat cat)
         {
-            using SQLiteConnection conn = new SQLiteConnection(Constants.Paths.PathToDB);
-            conn.Open();
-                
-            var reader = new SQLiteCommand(Constants.SqlCommands.SelectAll + Constants.TableNames.Cats, conn).ExecuteReader();
+            var columnName = '"' + cat.Name + '"';
+            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cats}({Constants.TableFields.Cost},{Constants.TableFields.Name},{Constants.TableFields.Weight})Values({cat.Cost},{columnName},{cat.Weight})";
+            DbHelper.ExecuteSql(stringQuery);
+        }
+
+        public void UpdateById(Cat cat)
+        {
+            var columnName = '"' + cat.Name + '"';
+            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cats} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Cost} = {cat.Cost}, {Constants.TableFields.Weight} = {cat.Weight} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {cat.Id};";
+            DbHelper.ExecuteSql(stringQuery);
+        }
+
+        public void DeleteById(int id)
+        {
+            var stringQuery = $"{Constants.SqlCommands.DeleteFrom} {Constants.TableNames.Cats} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {id};";
+            DbHelper.ExecuteSql(stringQuery);
+        }
+        
+        public List<Cat> GetAll()
+        {
             var cats = new List<Cat>();
 
-            while (reader.Read())
+            try
             {
-                int id = 0, weight = 0, cost = 0;
-                var name = string.Empty;
+                using var conn = new SQLiteConnection(Constants.Paths.PathToDb);
+                conn.Open();
+                
+                var reader = new SQLiteCommand(Constants.SqlCommands.SelectAll + Constants.TableNames.Cats, conn).ExecuteReader();
 
-                try
+                while (reader.Read())
                 {
-                    if (reader[Constants.TableFields.Id] != null)
-                    {
-                        id = GetIntByColumn(Constants.TableFields.Id, reader);
-                    }
+                    int id = 0, weight = 0, cost = 0;
+                    var name = string.Empty;
 
-                    if (reader[Constants.TableFields.Cost] != null)
-                    {
-                        cost = GetIntByColumn(Constants.TableFields.Cost, reader);
-                    }
+                    if (reader[Constants.TableFields.Id] != null) id = DbHelper.GetIntByColumn(Constants.TableFields.Id, reader);
+                    if (reader[Constants.TableFields.Cost] != null) cost = DbHelper.GetIntByColumn(Constants.TableFields.Cost, reader);
+                    if (reader[Constants.TableFields.Weight] != null) weight = DbHelper.GetIntByColumn(Constants.TableFields.Weight, reader);
+                    if (reader[Constants.TableFields.Name] != null) name = reader[Constants.TableFields.Name].ToString();
 
-                    if (reader[Constants.TableFields.Weight] != null)
-                    {
-                        weight = GetIntByColumn(Constants.TableFields.Weight, reader);
-                    }
-
-                    if (reader[Constants.TableFields.Name] != null)
-                    {
-                        name = reader[Constants.TableFields.Name].ToString();
-                    }
-
-                    var cat = new Cat
-                    {
-                        Id = id,
-                        Cost = cost,
-                        Weight = weight,
-                        Name = name,
-                    };
-
+                    var cat = new Cat(id, weight, cost, name);
                     cats.Add(cat);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                
+                reader.Close();
             }
-                
-            reader.Close();
-                
-            return cats;
-        }
-
-        private int GetIntByColumn(string columnName, SQLiteDataReader sqLiteDataReader)
-        {
-            var dataFromColumn = sqLiteDataReader[columnName].ToString();
-            if (!string.IsNullOrEmpty(dataFromColumn))
+            catch (Exception e)
             {
-                return int.Parse(dataFromColumn);
+                Console.WriteLine(e);
             }
-
-            return 0;
-        }
-
-        public void AddNewCat(string name, int cost, int weight)
-        {
-            using SQLiteConnection conn = new SQLiteConnection(Constants.Paths.PathToDB);
-            conn.Open();
-
-            var columnName = '"' + name + '"';
-            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cats}({Constants.TableFields.Cost},{Constants.TableFields.Name},{Constants.TableFields.Weight})Values({cost},{columnName},{weight})";
             
-            var executedCommand = new SQLiteCommand(stringQuery, conn).ExecuteReader();
-            var createCommandResult = conn.CreateCommand();
-            
-            createCommandResult.CommandText = stringQuery;
-            createCommandResult.ExecuteNonQuery();
-            conn.Close();
-        }
-
-        public void UpdateCat(int id, string name, int cost, int weight)
-        {
-            using SQLiteConnection conn = new SQLiteConnection(Constants.Paths.PathToDB);
-            conn.Open();
-
-            var columnName = '"' + name + '"';
-            
-            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cats} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Cost} = {cost}, {Constants.TableFields.Weight} = {weight} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {id};";
-            
-            var executedCommand = new SQLiteCommand(stringQuery, conn).ExecuteReader();
-            var createCommandResult = conn.CreateCommand();
-            
-            createCommandResult.CommandText = stringQuery;
-            createCommandResult.ExecuteNonQuery();
-            conn.Close();
+            return cats;
         }
     }
 }

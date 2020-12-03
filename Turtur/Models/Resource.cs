@@ -1,23 +1,16 @@
 ﻿namespace Turtur.Models
 {
-    class Resource
+    public class Resource
     {
-        private string name;
-
-        private int id, supplier;
-
-        public string Name { get; set; }
-
-        public int Supplier { get; set; }
-
-        public int Id { get; set; }
-
-        public Resource() { }
-
-        public Resource(string name, int supplier)
+        public readonly string Name;
+        public readonly int Supplier;
+        public readonly int Id;
+        
+        public Resource(string name, int supplier, int id)
         {
-            this.supplier = supplier;
-            this.name = name;
+            Supplier = supplier;
+            Name = name;
+            Id = id;
         }
     }
 }
