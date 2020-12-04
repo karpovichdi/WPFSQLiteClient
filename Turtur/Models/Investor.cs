@@ -5,7 +5,7 @@
         public readonly string Name;
         public readonly int Id;
 
-        public Investor(string name, int id)
+        public Investor(int id, string name)
         {
             Name = name;
             Id = id;

@@ -6,7 +6,7 @@
         public readonly int Supplier;
         public readonly int Id;
         
-        public Resource(string name, int supplier, int id)
+        public Resource(int id, string name, int supplier)
         {
             Supplier = supplier;
             Name = name;

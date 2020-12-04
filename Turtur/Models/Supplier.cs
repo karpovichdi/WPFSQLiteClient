@@ -6,7 +6,7 @@
         public readonly string Category;
         public readonly int Id;
         
-        public Supplier(string name, string category, int id)
+        public Supplier(int id, string name, string category)
         {
             Name = name;
             Category = category;

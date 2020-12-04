@@ -6,7 +6,7 @@
         public readonly int Id;
         public readonly int Cost;
         
-        public Money(string transactionName, int cost, int id)
+        public Money(int id, string transactionName, int cost)
         {
             TransactionName = transactionName;
             Cost = cost;

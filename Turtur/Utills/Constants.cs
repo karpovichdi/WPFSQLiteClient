@@ -24,6 +24,12 @@ namespace Turtur.Utills
             public const string Cats = "Cats";
             public const string Cars = "Cars";
             public const string Customer = "Customers";
+            public const string Employee = "Employee";
+            public const string Investors = "Investors";
+            public const string Money = "Money";
+            public const string Sales = "Sales";
+            public const string Resources = "Resources";
+            public const string Suppliers = "Supplier";
         }
         
         public static class TableFields
@@ -33,6 +39,15 @@ namespace Turtur.Utills
             public const string Cost = "Cost";
             public const string Weight = "Weight";
             public const string Phone = "Phone";
+            public const string FirstName = "FirstName";
+            public const string LastName = "LastName";
+            public const string TransactionName = "TransactionName";
+            public const string Customer = "Customer";
+            public const string Employees = "Employees";
+            public const string Supplier = "Supplier";
+            public const string Date = "Date";
+            public const string Cat = "Cat";
+            public const string Category = "Category";
         }
     }
 }

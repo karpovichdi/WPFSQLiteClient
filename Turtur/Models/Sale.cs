@@ -7,7 +7,7 @@
         public readonly int Cat;
         public readonly int Id;
 
-        public Sale(string date, int customer, int cat, int id)
+        public Sale(int id, string date, int customer, int cat)
         {
             Date = date;
             Customer = customer;

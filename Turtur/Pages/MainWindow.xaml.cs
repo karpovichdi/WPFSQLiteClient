@@ -10,17 +10,17 @@ namespace Turtur.Pages
         {
             InitializeComponent();
 
-            var dbCarService = new DbCustomerService();
+            var dbCarService = new DbSupplierService();
             
             var c1 = dbCarService.GetAll();
 
-            var cat1 = new Customer(1,"customer","phone");
+            var cat1 = new Supplier(1, "27.08.2020", "1");
             
             dbCarService.AddNew(cat1);
             
             var c2 = dbCarService.GetAll();
             
-            var cat2 = new Customer(1,"customer1","phone1");
+            var cat2 = new Supplier(1, "26.08.2020", "7");
             
             dbCarService.UpdateById(cat2);
             

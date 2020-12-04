@@ -6,7 +6,7 @@
         public readonly string LastName;
         public readonly int Id;
         
-        public Employe(string firstName, string lastName, int id)
+        public Employe(int id, string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
