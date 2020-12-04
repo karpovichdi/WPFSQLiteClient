@@ -30,5 +30,11 @@ namespace Turtur.Pages
             
             var c4 = dbCarService.GetAll();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Page1 w = new Page1();
+            Content = w;
+        }
     }
 }
