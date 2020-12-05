@@ -9,6 +9,67 @@
       Title="Page1">
 
     <Grid>
-        <Label Content="Page1"/>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                        <Image Source="/WpfTutorialSamples;component/Images/cut.png" />
+                    </Button>
+                    <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                        <Image Source="/WpfTutorialSamples;component/Images/copy.png" />
+                    </Button>
+                    <Button Command="Paste" ToolTip="Paste from Windows Clipboard.">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/WpfTutorialSamples;component/Images/paste.png" />
+                            <TextBlock Margin="3,0,0,0">Paste</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Separator />
+                    <Label>Font size:</Label>
+                    <ComboBox>
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">12</ComboBoxItem>
+                        <ComboBoxItem>14</ComboBoxItem>
+                        <ComboBoxItem>16</ComboBoxItem>
+                    </ComboBox>
+                </ToolBar>
+            </ToolBarTray>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+            </Grid.ColumnDefinitions>
+            <ListView Name="lvUsers"
+                  HorizontalAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Cars">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="https://i.pinimg.com/originals/f0/95/c5/f095c5d902769b41302b34b4a3c7dc0d.jpg"
+                                           Width="100"
+                                           Height="100"/>
+
+                                        <TextBlock Text="{Binding NAME}" 
+                                                   Foreground="Blue" 
+                                                   Cursor="Hand" 
+                                                   VerticalAlignment="Center"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        
+        
     </Grid>
 </Page>

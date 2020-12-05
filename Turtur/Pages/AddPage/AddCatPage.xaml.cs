@@ -10,24 +10,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Turtur.Models;
 
-namespace Turtur.Pages
+namespace Turtur.Pages.AddPage
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for AddCatPage.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AddCatPage : Page
     {
-        public Page1()
+        public AddCatPage()
         {
             InitializeComponent();
-
-            List<Car> items = new List<Car>();
-            items.Add(new Car(0, "wertwerte"));
-            items.Add(new Car(0, "jkjphibuouio"));
-            items.Add(new Car(0, "fghjgfhjfjghj"));
-            lvUsers.ItemsSource = items;
         }
     }
 }
