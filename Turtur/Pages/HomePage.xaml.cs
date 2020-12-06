@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using Turtur.Pages.Category;
 
 namespace Turtur.Pages
@@ -20,6 +19,11 @@ namespace Turtur.Pages
         private void CarButtonClickHandler(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.Navigate(new Cars());
+        }
+
+        private void CustomerButtonClickHandler(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Customers());
         }
     }
 }

@@ -2,9 +2,21 @@
 {
     public class Customer
     {
-        public readonly string Name;
-        public readonly string Phone;
+        public string Name;
+        public string Phone;
         public readonly int Id;
+
+        public string NAME
+        {
+            get => Name;
+            set => Name = value;
+        }
+
+        public string PHONE
+        {
+            get => Phone;
+            set => Phone = value;
+        }
 
         public Customer(int id, string name, string phone) 
         {

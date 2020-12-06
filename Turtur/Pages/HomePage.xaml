@@ -58,6 +58,7 @@
                         <Button Grid.Row="0" 
                             Grid.Column="2"
                             Content="Покупатели" 
+                            Click="CustomerButtonClickHandler"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                         <Button Grid.Row="1" 
                             Grid.Column="0" 

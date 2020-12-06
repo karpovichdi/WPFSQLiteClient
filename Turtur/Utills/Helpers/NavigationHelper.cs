@@ -12,6 +12,7 @@ namespace Turtur.Utills.Helpers
                     App.Current.MainWindow.Content = new Cars();
                     break;
                 case Constants.TableNames.Customer:
+                    App.Current.MainWindow.Content = new Customers();
                     break;
                 case Constants.TableNames.Employee:
                     break;
