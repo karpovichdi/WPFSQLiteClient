@@ -25,5 +25,10 @@ namespace Turtur.Pages
         {
             _mainFrame.NavigationService.Navigate(new Customers());
         }
+
+        private void EmployeButtonClickHandler(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Employees());
+        }
     }
 }
