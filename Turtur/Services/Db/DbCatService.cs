@@ -12,14 +12,18 @@ namespace Turtur.Services.Db
         public void AddNew(Cat cat)
         {
             var columnName = '"' + cat.Name + '"';
-            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cats}({Constants.TableFields.Cost},{Constants.TableFields.Name},{Constants.TableFields.Weight})Values({cat.Cost},{columnName},{cat.Weight})";
+            var photo = '"' + cat.Photo + '"';
+
+            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cats}({Constants.TableFields.Cost},{Constants.TableFields.Name},{Constants.TableFields.Weight},{Constants.TableFields.Photo})Values({cat.Cost},{columnName},{cat.Weight},{photo})";
             DbHelper.ExecuteSql(stringQuery);
         }
 
         public void UpdateById(Cat cat)
         {
             var columnName = '"' + cat.Name + '"';
-            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cats} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Cost} = {cat.Cost}, {Constants.TableFields.Weight} = {cat.Weight} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {cat.Id};";
+            var photo = '"' + cat.Photo + '"';
+
+            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cats} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Cost} = {cat.Cost}, {Constants.TableFields.Weight} = {cat.Weight}, {Constants.TableFields.Photo} = {photo} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {cat.Id};";
             DbHelper.ExecuteSql(stringQuery);
         }
 
@@ -44,13 +48,15 @@ namespace Turtur.Services.Db
                 {
                     int id = 0, weight = 0, cost = 0;
                     var name = string.Empty;
+                    var photo = string.Empty;
 
                     if (reader[Constants.TableFields.Id] != null) id = DbHelper.GetIntByColumn(Constants.TableFields.Id, reader);
                     if (reader[Constants.TableFields.Cost] != null) cost = DbHelper.GetIntByColumn(Constants.TableFields.Cost, reader);
                     if (reader[Constants.TableFields.Weight] != null) weight = DbHelper.GetIntByColumn(Constants.TableFields.Weight, reader);
                     if (reader[Constants.TableFields.Name] != null) name = reader[Constants.TableFields.Name].ToString();
+                    if (reader[Constants.TableFields.Photo] != null) photo = reader[Constants.TableFields.Photo].ToString();
 
-                    var cat = new Cat(id, weight, cost, name);
+                    var cat = new Cat(id, photo, weight, cost, name);
                     cats.Add(cat);
                 }
                 

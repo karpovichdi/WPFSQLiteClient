@@ -48,6 +48,7 @@ namespace Turtur.Utills
             public const string Date = "Date";
             public const string Cat = "Cat";
             public const string Category = "Category";
+            public const string Photo = "Photo";
         }
     }
 }

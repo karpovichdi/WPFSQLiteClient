@@ -33,5 +33,11 @@ namespace Turtur.Utills.Helpers.Db
                 Console.WriteLine(e);
             }
         }
+
+        public static void DeleteAll(string tableName) 
+        {
+            var stringQuery = $"DELETE FROM `{tableName}`;";
+            ExecuteSql(stringQuery);
+        }
     }
 }

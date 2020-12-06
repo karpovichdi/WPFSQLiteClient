@@ -2,14 +2,40 @@
 {
     public class Cat
     {
-        public readonly string Name;
-        public readonly int Weight;
-        public readonly int Cost;
+        public string Name;
+        public string Photo;
+        public int Weight;
+        public int Cost;
         public readonly int Id;
 
-        public Cat(int id, int weight, int cost, string name)
+        public string NAME
+        {
+            get => Name;
+            set => Name = value;
+        }
+        
+        public string PHOTO
+        {
+            get => Photo;
+            set => Photo = value;
+        }
+        
+        public int WEIGHT
+        {
+            get => Weight;
+            set => Weight = value;
+        }
+        
+        public int COST
+        {
+            get => Cost;
+            set => Cost = value;
+        }
+        
+        public Cat(int id, string photo, int weight, int cost, string name)
         {
             Name = name;
+            Photo = photo;
             Weight = weight;
             Cost = cost;
             Id = id;
