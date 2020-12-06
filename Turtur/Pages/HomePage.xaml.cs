@@ -30,5 +30,10 @@ namespace Turtur.Pages
         {
             _mainFrame.NavigationService.Navigate(new Employees());
         }
+
+        private void InvestorButtonClickHandler(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Investors());
+        }
     }
 }

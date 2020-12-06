@@ -17,25 +17,27 @@ using Turtur.Utills.Helpers;
 
 namespace Turtur.Pages.Category
 {
-    public partial class Employees : Page
+    /// <summary>
+    /// Interaction logic for Investors.xaml
+    /// </summary>
+    public partial class Investors : Page
     {
-        private DbEmployeService _dbEmployeService;
-        private Employe _lastSelectedEmploye;
-        private bool _firstNameBoxChanged;
-        private bool _lastNameBoxChanged;
+        private DbInvestorService _dbInvestorService;
+        private Investor _lastSelectedInvestor;
+        private bool _nameBoxChanged;
 
-        public Employees()
+        public Investors()
         {
             InitializeComponent();
 
-            _dbEmployeService = new DbEmployeService();
+            _dbInvestorService = new DbInvestorService();
 
             UpdateList();
         }
 
         private void AddClickHandler(object sender, RoutedEventArgs e)
         {
-            var page = new AddEmploye();
+            var page = new AddInvestor();
             page.Show();
         }
 
@@ -47,26 +49,25 @@ namespace Turtur.Pages.Category
 
         private void UpdateList()
         {
-            var employees = _dbEmployeService.GetAll();
-            if (employees.Count == 0) employees.Add(new Employe(0, "В базе нет сотрудников", ""));
+            var investor = _dbInvestorService.GetAll();
+            if (investor.Count == 0) investor.Add(new Investor(0, "В базе нет инвесторов"));
 
             imageBox.Visibility = Visibility.Hidden;
-            listCats.ItemsSource = employees;
+            listCats.ItemsSource = investor;
         }
 
         private void CustomerSelectedHandler(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                var employe = e.AddedItems[0] as Employe;
-                if (employe != null)
+                var investor = e.AddedItems[0] as Investor;
+                if (investor != null)
                 {
-                    firstNameBox.Text = employe.FIRSTNAME;
-                    lastNameBox.Text = employe.LASTNAME;
+                    nameBox.Text = investor.NAME;
 
                     DoReviewInfoReadOnly();
 
-                    _lastSelectedEmploye = employe;
+                    _lastSelectedInvestor = investor;
                 }
             }
             catch (Exception exception)
@@ -82,31 +83,20 @@ namespace Turtur.Pages.Category
 
         private void SaveClickHandler(object sender, RoutedEventArgs e)
         {
-            var firstName = _lastSelectedEmploye.FIRSTNAME;
-            var lastName = _lastSelectedEmploye.LASTNAME;
+            var name = _lastSelectedInvestor.Name;
 
-            if (_firstNameBoxChanged)
+            if (_nameBoxChanged)
             {
-                firstName = firstNameBox.Text;
-                if (string.IsNullOrEmpty(firstName))
+                name = nameBox.Text;
+                if (string.IsNullOrEmpty(name))
                 {
-                    firstNameBox.Text = "Вы должны ввести имя";
+                    nameBox.Text = "Вы должны ввести название организации";
                     return;
                 }
             }
 
-            if (_lastNameBoxChanged)
-            {
-                lastName = lastNameBox.Text;
-                if (string.IsNullOrEmpty(lastName))
-                {
-                    lastNameBox.Text = "Вы должны ввести телефон";
-                    return;
-                }
-            }
-
-            var employe = new Employe(_lastSelectedEmploye.Id, firstName, lastName);
-            _dbEmployeService.UpdateById(employe);
+            var investor = new Investor(_lastSelectedInvestor.Id, name);
+            _dbInvestorService.UpdateById(investor);
 
             DoReviewInfoReadOnly();
             UpdateList();
@@ -114,7 +104,7 @@ namespace Turtur.Pages.Category
 
         private void DeleteClickHandler(object sender, RoutedEventArgs e)
         {
-            _dbEmployeService.DeleteById(_lastSelectedEmploye.Id);
+            _dbInvestorService.DeleteById(_lastSelectedInvestor.Id);
             deleteButton.Visibility = Visibility.Hidden;
 
             UpdateList();
@@ -128,11 +118,9 @@ namespace Turtur.Pages.Category
             editButton.Visibility = Visibility.Visible;
             imageBox.Visibility = Visibility.Visible;
 
-            firstNameBox.IsEnabled = false;
-            lastNameBox.IsEnabled = false;
+            nameBox.IsEnabled = false;
 
-            _firstNameBoxChanged = false;
-            _lastNameBoxChanged = false;
+            _nameBoxChanged = false;
         }
 
         private void DoReviewInfoEditable()
@@ -142,11 +130,8 @@ namespace Turtur.Pages.Category
             editButton.Visibility = Visibility.Hidden;
             imageBox.Visibility = Visibility.Visible;
 
-            firstNameBox.IsEnabled = true;
-            lastNameBox.IsEnabled = true;
-
-            _firstNameBoxChanged = false;
-            _lastNameBoxChanged = false;
+            nameBox.IsEnabled = true;
+            _nameBoxChanged = false;
         }
 
         private void HideDescription()
@@ -155,24 +140,15 @@ namespace Turtur.Pages.Category
             saveButton.Visibility = Visibility.Hidden;
             editButton.Visibility = Visibility.Hidden;
 
-            _firstNameBoxChanged = false;
-            _lastNameBoxChanged = false;
+            nameBox.Text = null;
 
-            lastNameBox.Text = null;
-            firstNameBox.Text = null;
-
-            firstNameBox.IsEnabled = false;
-            lastNameBox.IsEnabled = false;
+            _nameBoxChanged = false;
+            nameBox.IsEnabled = false;
         }
 
-        private void FirstNameBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _firstNameBoxChanged = true;
-        }
-
-        private void LastNameBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            _lastNameBoxChanged = true;
+            _nameBoxChanged = true;
         }
 
         private void GoCategoryPageHandler(object sender, RoutedEventArgs e)

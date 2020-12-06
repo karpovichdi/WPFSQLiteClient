@@ -2,8 +2,14 @@
 {
     public class Investor
     {
-        public readonly string Name;
+        public string Name;
         public readonly int Id;
+
+        public string NAME
+        {
+            get => Name;
+            set => Name = value;
+        }
 
         public Investor(int id, string name)
         {
