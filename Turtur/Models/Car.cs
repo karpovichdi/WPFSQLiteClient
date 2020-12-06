@@ -4,6 +4,8 @@
     {
         public readonly int Id;
         public string Name;
+        public string Photo;
+        public string StateNumber;
 
         public string NAME
         {
@@ -11,10 +13,24 @@
             set => Name = value;
         }
 
-        public Car(int id, string name)
+        public string PHOTO
         {
-            Name = name;
+            get => Photo;
+            set => Photo = value;
+        }
+
+        public string STATENUMBER
+        {
+            get => StateNumber;
+            set => StateNumber = value;
+        }
+
+        public Car(int id, string name, string photo, string stateNumber)
+        {
             Id = id;
+            Name = name;
+            Photo = photo;
+            StateNumber = stateNumber;
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿<Window x:Class="Turtur.Pages.Add.AddCat"
+﻿<Window x:Class="Turtur.Pages.Add.AddCar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Turtur.Pages.Add"
         mc:Ignorable="d"
-        Title="Добавить кота" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Добавить машину"
         Height="600" 
         Width="700" >
     <Grid x:Name="mainGrid"
@@ -41,13 +41,10 @@
                 </Grid>
 
                 <TextBox x:Name="nameBox" 
-                         materialDesign:HintAssist.Hint="Кличка / Порода" 
+                         materialDesign:HintAssist.Hint="Модель" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="weightBox" 
-                         materialDesign:HintAssist.Hint="Вес, Кг." 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="costBox" 
-                         materialDesign:HintAssist.Hint="Цена, $" 
+                <TextBox x:Name="stateNumberBox" 
+                         materialDesign:HintAssist.Hint="Гос. номер" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 <Button Content="Сохранить" 

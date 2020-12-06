@@ -1,4 +1,6 @@
-﻿namespace Turtur.Utills.Helpers
+﻿using Turtur.Pages.Category;
+
+namespace Turtur.Utills.Helpers
 {
     public static class NavigationHelper
     {
@@ -7,8 +9,7 @@
             switch (pageName)
             {
                 case Constants.TableNames.Cars:
-                    //var catsPage = new Cats();
-                    //Content = catsPage;
+                    App.Current.MainWindow.Content = new Cars();
                     break;
                 case Constants.TableNames.Customer:
                     break;
@@ -25,6 +26,7 @@
                 case Constants.TableNames.Suppliers:
                     break;
                 case Constants.TableNames.Cats:
+                    App.Current.MainWindow.Content = new Cats();
                     break;
             }
         }

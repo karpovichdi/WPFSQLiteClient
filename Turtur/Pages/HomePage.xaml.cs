@@ -16,5 +16,10 @@ namespace Turtur.Pages
         {
             _mainFrame.NavigationService.Navigate(new Cats());
         }
+
+        private void CarButtonClickHandler(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Cars());
+        }
     }
 }

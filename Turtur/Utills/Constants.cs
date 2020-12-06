@@ -49,6 +49,7 @@ namespace Turtur.Utills
             public const string Cat = "Cat";
             public const string Category = "Category";
             public const string Photo = "Photo";
+            public const string StateNumber = "StateNumber";
         }
     }
 }

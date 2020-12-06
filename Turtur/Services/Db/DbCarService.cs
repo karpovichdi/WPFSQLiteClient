@@ -12,14 +12,20 @@ namespace Turtur.Services.Db
         public void AddNew(Car car)
         {
             var columnName = '"' + car.Name + '"';
-            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cars}({Constants.TableFields.Name})Values({columnName})";
+            var stateNumber = '"' + car.StateNumber + '"';
+            var photo = '"' + car.Photo + '"';
+
+            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Cars}({Constants.TableFields.Name},{Constants.TableFields.Photo},{Constants.TableFields.StateNumber})Values({columnName},{photo},{stateNumber})";
             DbHelper.ExecuteSql(stringQuery);
         }
 
         public void UpdateById(Car car)
         {
             var columnName = '"' + car.Name + '"';
-            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cars} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {car.Id};";
+            var stateNumber = '"' + car.StateNumber + '"';
+            var photo = '"' + car.Photo + '"';
+
+            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Cars} {Constants.SqlCommands.Set} {Constants.TableFields.Name} = {columnName}, {Constants.TableFields.Photo} = {photo}, {Constants.TableFields.StateNumber} = {stateNumber} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {car.Id};";
             DbHelper.ExecuteSql(stringQuery);
         }
 
@@ -44,11 +50,15 @@ namespace Turtur.Services.Db
                 {
                     var id = 0;
                     var name = string.Empty;
+                    var photo = string.Empty;
+                    var stateNumber = string.Empty;
 
                     if (reader[Constants.TableFields.Id] != null) id = DbHelper.GetIntByColumn(Constants.TableFields.Id, reader);
                     if (reader[Constants.TableFields.Name] != null) name = reader[Constants.TableFields.Name].ToString();
+                    if (reader[Constants.TableFields.Photo] != null) photo = reader[Constants.TableFields.Photo].ToString();
+                    if (reader[Constants.TableFields.StateNumber] != null) stateNumber = reader[Constants.TableFields.StateNumber].ToString();
 
-                    var cat = new Car(id, name);
+                    var cat = new Car(id, name, photo, stateNumber);
 
                     cars.Add(cat);
                 }

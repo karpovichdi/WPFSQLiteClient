@@ -53,6 +53,7 @@
                         <Button Grid.Row="0" 
                             Grid.Column="0" 
                             Content="Автопарк"
+                            Click="CarButtonClickHandler"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                         <Button Grid.Row="0" 
                             Grid.Column="2"
