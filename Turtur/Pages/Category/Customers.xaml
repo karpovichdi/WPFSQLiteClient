@@ -43,9 +43,9 @@
                             <ComboBoxItem Tag="Employee" Selected="GoCategotyPageHandler">Сотрудники</ComboBoxItem>
                             <ComboBoxItem Tag="Investors" Selected="GoCategotyPageHandler">Инвесторы</ComboBoxItem>
                             <ComboBoxItem Tag="Money" Selected="GoCategotyPageHandler">Финансы</ComboBoxItem>
-                            <ComboBoxItem Tag="Resources" Selected="GoCategotyPageHandler">Ресурсы</ComboBoxItem>
+                            <!--<ComboBoxItem Tag="Resources" Selected="GoCategotyPageHandler">Ресурсы</ComboBoxItem>-->
                             <ComboBoxItem Tag="Sales" Selected="GoCategotyPageHandler">Продажи</ComboBoxItem>
-                            <ComboBoxItem Tag="Supplier" Selected="GoCategotyPageHandler">Поставщики</ComboBoxItem>
+                            <!--<ComboBoxItem Tag="Supplier" Selected="GoCategotyPageHandler">Поставщики</ComboBoxItem>-->
                         </ComboBox>
                     </ToolBar>
                 </ToolBarTray>

@@ -1,0 +1,45 @@
+﻿<Window x:Class="Turtur.Pages.Add.AddMoney"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Добавить финансовую операцию" 
+        Height="600" 
+        Width="700" >
+    <Grid x:Name="mainGrid"
+          Background="#ffdadada">
+        <Border MinWidth="400"
+                Margin="15"
+                Background="White"
+                VerticalAlignment="Center"
+                Padding="40"
+                MaxWidth="550"
+                CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30"
+                                  Color="LightGray"
+                                  ShadowDepth="0"/>
+
+            </Border.Effect>
+            <StackPanel>
+                <Image x:Name="photo"
+                       HorizontalAlignment="Center"
+                       Source="https://assets.entrepreneur.com/content/3x2/2000/20200511130316-GettyImages-1082433942.jpeg?width=700crop=2:1"
+                       Width="250"
+                       Height="150"/>
+
+                <TextBox x:Name="transactionNameBox" 
+                         materialDesign:HintAssist.Hint="Название операции" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="costBox" 
+                         materialDesign:HintAssist.Hint="Стоимость" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <Button Content="Сохранить" 
+                        Margin="0 20"
+                        Click="SaveClickHandler"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

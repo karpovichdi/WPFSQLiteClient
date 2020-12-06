@@ -1,5 +1,6 @@
 ﻿namespace Turtur.Models
 {
+    //UNUSED
     public class Resource
     {
         public readonly string Name;

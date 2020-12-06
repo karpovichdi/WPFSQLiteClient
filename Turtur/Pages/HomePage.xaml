@@ -73,17 +73,20 @@
                         <Button Grid.Row="2" 
                             Grid.Column="0" 
                             Content="Финансы"
+                            Click="MoneyButtonClickHandler"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                         <Button Grid.Row="2" 
                             Grid.Column="2"
                             Content="Ресурсы" 
+                                Visibility="Hidden"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
-                        <Button Grid.Row="3" 
-                            Grid.Column="0" 
+                        <Button Grid.Row="2" 
+                            Grid.Column="2" 
                             Content="Продажи"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                         <Button Grid.Row="3" 
                             Grid.Column="2"
+                                Visibility="Hidden"
                             Content="Поставщики" 
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                     </Grid>

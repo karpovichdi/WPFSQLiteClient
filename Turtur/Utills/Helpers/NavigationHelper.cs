@@ -21,6 +21,7 @@ namespace Turtur.Utills.Helpers
                     App.Current.MainWindow.Content = new Investors();
                     break;
                 case Constants.TableNames.Money:
+                    App.Current.MainWindow.Content = new Moneys();
                     break;
                 case Constants.TableNames.Resources:
                     break;

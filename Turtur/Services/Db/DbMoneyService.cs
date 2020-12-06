@@ -13,7 +13,7 @@ namespace Turtur.Services.Db
         {
             var columnTransactionName = '"' + money.TransactionName + '"';
 
-            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Money}({Constants.TableFields.TransactionName},{Constants.TableFields.Cost})Values({columnTransactionName},{money.Cost})";
+            var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Money}({Constants.TableFields.TransactionName},{Constants.TableFields.Cost},{Constants.TableFields.Sale})Values({columnTransactionName},{money.Cost},{money.Sale})";
             DbHelper.ExecuteSql(stringQuery);
         }
 
@@ -21,7 +21,7 @@ namespace Turtur.Services.Db
         {
             var columnTransactionName = '"' + money.TransactionName + '"';
 
-            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Money} {Constants.SqlCommands.Set} {Constants.TableFields.TransactionName} = {columnTransactionName}, {Constants.TableFields.Cost} = {money.Cost} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {money.Id};";
+            var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Money} {Constants.SqlCommands.Set} {Constants.TableFields.TransactionName} = {columnTransactionName}, {Constants.TableFields.Cost} = {money.Cost}, {Constants.TableFields.Sale} = {money.Sale} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {money.Id};";
             DbHelper.ExecuteSql(stringQuery);
         }
 
@@ -44,14 +44,15 @@ namespace Turtur.Services.Db
 
                 while (reader.Read())
                 {
-                    int id = 0, cost = 0;
+                    int id = 0, cost = 0, sale = 0;
                     string transactionName = string.Empty;
 
                     if (reader[Constants.TableFields.Id] != null) id = DbHelper.GetIntByColumn(Constants.TableFields.Id, reader);
+                    if (reader[Constants.TableFields.Sale] != null) sale = DbHelper.GetIntByColumn(Constants.TableFields.Sale, reader);
                     if (reader[Constants.TableFields.Cost] != null) cost = DbHelper.GetIntByColumn(Constants.TableFields.Cost, reader);
                     if (reader[Constants.TableFields.TransactionName] != null) transactionName = reader[Constants.TableFields.TransactionName].ToString();
 
-                    var customer = new Money(id, transactionName, cost);
+                    var customer = new Money(id, transactionName, cost, sale);
                     money.Add(customer);
                 }
                 

@@ -1,5 +1,6 @@
 ﻿namespace Turtur.Models
 {
+    //UNUSED
     public class Supplier
     {
         public readonly string Name;
