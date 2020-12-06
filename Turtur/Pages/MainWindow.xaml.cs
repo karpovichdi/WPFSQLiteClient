@@ -9,11 +9,5 @@ namespace Turtur.Pages
         {
             InitializeComponent();
         }
-
-        private void CatButtonClickHandler (object sender, RoutedEventArgs e)
-        {
-            var catsPage = new Cats();
-            Content = catsPage;
-        }
     }
 }

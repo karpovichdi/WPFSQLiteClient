@@ -258,8 +258,7 @@ namespace Turtur.Pages.Category
 
         private void GoHomeClickHandler(object sender, RoutedEventArgs e) 
         {
-            //var mainWindowPage = new MainWindow();
-            //Content = mainWindowPage;
+            App.Current.MainWindow.Content = new HomePage();
         }
     }
 }
