@@ -40,5 +40,10 @@ namespace Turtur.Pages
         {
             _mainFrame.NavigationService.Navigate(new Moneys());
         }
+
+        private void SaleButtonClickHandler(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Sales());
+        }
     }
 }

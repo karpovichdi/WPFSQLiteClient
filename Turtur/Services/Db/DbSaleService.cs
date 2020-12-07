@@ -23,22 +23,7 @@ namespace Turtur.Services.Db
             var date = '"' + sale.Date + '"';
 
             var stringQuery = $"{Constants.SqlCommands.InsertInto + Constants.TableNames.Sales}({Constants.TableFields.Date},{Constants.TableFields.Customer},{Constants.TableFields.Cat})Values({date},{sale.Customer},{sale.Cat})";
-            DbHelper.ExecuteSql(stringQuery);
-
-            try
-            {
-                var cats = _dbCatService.GetAll();
-                var cat = cats.Find((x) => x.Id == sale.Cat);
-
-                var cost = 0;
-                if (cat != null) cost = cat.COST;
-
-                _dbMoneyService.AddNew(new Money(0, "SALE: " + sale.Date + " " + cat?.Name, cost, sale.Id));
-            }
-            catch (Exception e) 
-            {
-                Console.WriteLine(e);
-            }            
+            DbHelper.ExecuteSql(stringQuery);        
         }
 
         public void UpdateById(Sale sale)
@@ -48,23 +33,23 @@ namespace Turtur.Services.Db
             var stringQuery = $"{Constants.SqlCommands.Update}{Constants.TableNames.Sales} {Constants.SqlCommands.Set} {Constants.TableFields.Date} = {date}, {Constants.TableFields.Customer} = {sale.Customer}, {Constants.TableFields.Cat} = {sale.Cat} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {sale.Id};";
             DbHelper.ExecuteSql(stringQuery);
 
-            try
-            {
-                var moneys = _dbMoneyService.GetAll();
-                var money = moneys.Find((x) => x.Sale == sale.Id);
+            //try
+            //{
+            //    var moneys = _dbMoneyService.GetAll();
+            //    var money = moneys.Find((x) => x.Sale == sale.Id);
 
-                var cats = _dbCatService.GetAll();
-                var cat = cats.Find((x) => x.Id == sale.Cat);
+            //    var cats = _dbCatService.GetAll();
+            //    var cat = cats.Find((x) => x.Id == sale.Cat);
 
-                var cost = 0;
-                if (cat != null) cost = cat.COST;
+            //    var cost = 0;
+            //    if (cat != null) cost = cat.COST;
 
-                _dbMoneyService.UpdateById(new Money(money.Id, "SALE: " + sale.Date + " " + cat?.Name, cost, sale.Id));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            //    _dbMoneyService.UpdateById(new Money(money.Id, "SALE: " + sale.Date + " " + cat?.Name, cost, sale.Id));
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
         }
 
         public void DeleteById(int id)
@@ -74,7 +59,10 @@ namespace Turtur.Services.Db
                 var moneys = _dbMoneyService.GetAll();
                 var money = moneys.Find((x) => x.Sale == id);
 
-                _dbMoneyService.DeleteById(money.Id);
+                if (money != null) 
+                {
+                    _dbMoneyService.DeleteById(money.Id);
+                }
 
                 var stringQuery = $"{Constants.SqlCommands.DeleteFrom} {Constants.TableNames.Sales} {Constants.SqlCommands.Where} {Constants.TableFields.Id} = {id};";
                 DbHelper.ExecuteSql(stringQuery);

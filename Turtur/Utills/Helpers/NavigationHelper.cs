@@ -26,6 +26,7 @@ namespace Turtur.Utills.Helpers
                 case Constants.TableNames.Resources:
                     break;
                 case Constants.TableNames.Sales:
+                    App.Current.MainWindow.Content = new Sales();
                     break;
                 case Constants.TableNames.Suppliers:
                     break;

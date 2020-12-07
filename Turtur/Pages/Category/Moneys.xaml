@@ -86,8 +86,7 @@
                           SelectionChanged="MoneySelectedHandler">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Имя операции"
-                                                Width="200">
+                                <GridViewColumn Header="Имя операции">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -100,8 +99,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Стоимость"
-                                                Width="200">
+                                <GridViewColumn Header="Стоимость, $">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding COST}" 
@@ -175,7 +173,7 @@
                 <TextBox x:Name="costBox" 
                      IsEnabled="False"
                      TextChanged="CostBox_TextChanged"
-                     materialDesign:HintAssist.Hint="Стоимость" 
+                     materialDesign:HintAssist.Hint="Стоимость, $" 
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button x:Name="catButton" 
                         HorizontalAlignment="Left"

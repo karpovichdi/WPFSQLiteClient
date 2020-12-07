@@ -1,0 +1,135 @@
+﻿<Window x:Class="Turtur.Pages.Add.AddSales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Добавить финансовую операцию"
+        Height="700" 
+        Width="800" >
+    <Grid x:Name="mainGrid"
+          Background="#ffdadada">
+        <Border MinWidth="400"
+                Margin="15"
+                Background="White"
+                VerticalAlignment="Center"
+                Padding="20"
+                MaxWidth="750"
+                CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30"
+                                  Color="LightGray"
+                                  ShadowDepth="0"/>
+
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4.2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="selectedCustomerBox" 
+                         Grid.Row="0"
+                         Grid.Column="2"
+                         Margin="0,0,0,10"
+                         materialDesign:HintAssist.Hint="Покупатель"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsEnabled="false"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="costBox" 
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0,0,0,10"
+                         materialDesign:HintAssist.Hint="Кот" 
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsEnabled="false"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="dateBox" 
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,10"
+                         materialDesign:HintAssist.Hint="Дата продажи" 
+                         IsEnabled="false"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <ListView x:Name="listCats"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Margin="10,10,10,10"
+                          SelectionChanged="CatSelectedHandler">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Выберите имя"
+                                            Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NAME}"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Cursor="Hand" 
+                                                   FontSize="12"
+                                                   Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Calendar x:Name="MaterialCalendar"
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          VerticalAlignment="Top"
+                          Margin="10,10,10,10" 
+                          IsTodayHighlighted="True"
+                          Background="WhiteSmoke">
+                    <Calendar.Resources>
+                        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#6a329f" />
+                        <SolidColorBrush x:Key="MaterialDesignBody" Color="SlateGray" />
+                    </Calendar.Resources>
+                </Calendar>
+
+                <ListView x:Name="lisCustomers"
+                          Grid.Row="1"
+                          Grid.Column="2"
+                          Margin="10,10,10,10"
+                          SelectionChanged="CustomerSelectedHandler">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Выберите имя"
+                                            Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NAME}"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Cursor="Hand" 
+                                                   FontSize="12"
+                                                   Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Button x:Name="saveButton" 
+                        Grid.Row="2" 
+                        Grid.Column="1"
+                        Content="Сохранить" 
+                        Margin="0 20"
+                        Click="SaveClickHandler"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

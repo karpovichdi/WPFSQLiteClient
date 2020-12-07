@@ -33,7 +33,7 @@
                          materialDesign:HintAssist.Hint="Название операции" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox x:Name="costBox" 
-                         materialDesign:HintAssist.Hint="Стоимость" 
+                         materialDesign:HintAssist.Hint="Стоимость, $" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 <Button Content="Сохранить" 

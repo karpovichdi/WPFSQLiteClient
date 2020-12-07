@@ -14,6 +14,7 @@
         <Grid x:Name="mainGrid"
           Background="#ffdadada">
             <Border MinWidth="400"
+                    MaxHeight="400"
                 Margin="15"
                 Background="White"
                 VerticalAlignment="Center"
@@ -43,7 +44,7 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="80"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="4*"/>
@@ -83,18 +84,22 @@
                         <Button Grid.Row="2" 
                             Grid.Column="2" 
                             Content="Продажи"
+                            Click="SaleButtonClickHandler"
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
                         <Button Grid.Row="3" 
                             Grid.Column="2"
                                 Visibility="Hidden"
                             Content="Поставщики" 
                             Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                        <Button HorizontalAlignment="Center"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                VerticalAlignment="Bottom"
+                                Content="Коты"
+                                Click="CatButtonClickHandler"
+                                Style="{StaticResource MaterialDesignFloatingActionButton}"/>
                     </Grid>
-
-                    <Button HorizontalAlignment="Stretch"
-                        Content="Коты"
-                        Click="CatButtonClickHandler"
-                        Style="{StaticResource MaterialDesignFloatingActionButton}"/>
                 </StackPanel>
             </Border>
         </Grid>

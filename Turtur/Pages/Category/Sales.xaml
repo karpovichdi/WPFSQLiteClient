@@ -1,0 +1,271 @@
+﻿<Page x:Class="Turtur.Pages.Category.Sales"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Turtur.Pages.Category"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Height="567" 
+      Width="900" 
+      Title="Продажи">
+    <DockPanel>
+        <Frame x:Name="_mainFrame" />
+        <Grid x:Name="mainGrid"
+              Background="#ffdadada">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="2.2*"/>
+                <ColumnDefinition Width="7.2*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
+                   Height="30"
+                   Margin="0,0,0,0"
+                   VerticalAlignment="Top">
+                <ToolBarTray DockPanel.Dock="Top">
+                    <ToolBar>
+                        <Label VerticalAlignment="Center">Категория учета:</Label>
+                        <ComboBox>
+                            <ComboBoxItem Tag="Cats" Selected="GoCategoryPageHandler">Коты</ComboBoxItem>
+                            <ComboBoxItem Tag="Cars" Selected="GoCategoryPageHandler">Автопарк</ComboBoxItem>
+                            <ComboBoxItem Tag="Customers" Selected="GoCategoryPageHandler">Покупатели</ComboBoxItem>
+                            <ComboBoxItem Tag="Employee" Selected="GoCategoryPageHandler">Сотрудники</ComboBoxItem>
+                            <ComboBoxItem Tag="Investors" Selected="GoCategoryPageHandler">Инвесторы</ComboBoxItem>
+                            <ComboBoxItem Tag="Money" Selected="GoCategoryPageHandler">Финансы</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">Продажи</ComboBoxItem>
+                            <!--<ComboBoxItem Tag="Resources" Selected="GoCategoryPageHandler">Ресурсы</ComboBoxItem>-->
+                            <!--<ComboBoxItem Tag="Supplier" Selected="GoCategoryPageHandler">Поставщики</ComboBoxItem>-->
+                        </ComboBox>
+                    </ToolBar>
+                </ToolBarTray>
+            </DockPanel>
+
+            <Button Grid.Row="0" 
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Content="Домой"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Right"
+                    Click="GoHomeClickHandler"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource MaterialDesignFlatButton}"/>
+
+            <TextBlock Grid.Row="0" 
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       FontSize="25"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Text="Продажи"
+                       Foreground="#6F47D7"
+                       Style="{StaticResource MaterialDesignHeadline1TextBlock}"/>
+
+            <Border x:Name="border" 
+                    Grid.Row="1" 
+                    Grid.Column="2"
+                    Margin="15"
+                    Background="White"
+                    VerticalAlignment="Center"
+                    Padding="30"
+                    CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30"
+                                  Color="LightGray"
+                                  ShadowDepth="0"/>
+                </Border.Effect>
+
+                <ListView x:Name="listCats"
+                              Grid.Row="1"
+                              SelectionChanged="SaleSelectedHandler">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Дата">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding DATE}"
+                                                       Cursor="Hand" 
+                                                       Margin="20,0,0,0"
+                                                       FontSize="14"
+                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Покупатель">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CustomerName}" 
+                                                       Cursor="Hand" 
+                                                       Margin="20,0,0,0"
+                                                       FontSize="14"
+                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Кот">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding CatName}" 
+                                                       Cursor="Hand" 
+                                                       Margin="20,0,0,0"
+                                                       FontSize="14"
+                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Стоимость, $">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Cost}" 
+                                                       Cursor="Hand" 
+                                                       Margin="20,0,0,0"
+                                                       FontSize="14"
+                                                       Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+            <StackPanel Grid.Row="2" 
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,20,20">
+                <Button Content="Обновить"
+                    Click="RefreshClickHandler"
+                    Margin="0,0,10,0"
+                    Style="{StaticResource MaterialDesignFloatingActionDarkButton}"/>
+                <Button Content="Добавить"
+                    Click="AddClickHandler"
+                    Style="{StaticResource MaterialDesignFloatingActionButton}"/>
+            </StackPanel>
+
+            <Button x:Name="deleteButton" 
+                Grid.Row="2"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                Margin="20,0,0,20"
+                Content="Удалить"
+                Visibility="Hidden"
+                Click="DeleteClickHandler"
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}"/>
+
+            <StackPanel x:Name="calendarStack" 
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,20">
+                <Calendar x:Name="materialCalendar" 
+                          VerticalAlignment="Center"
+                          Margin="0,0,0,0" 
+                          IsTodayHighlighted="True"
+                          Background="WhiteSmoke">
+                    <Calendar.Resources>
+                        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#6a329f" />
+                        <SolidColorBrush x:Key="MaterialDesignBody" Color="SlateGray" />
+                    </Calendar.Resources>
+                </Calendar>
+
+                <Button x:Name="catButton" 
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Bottom"
+                        Content="О коте"
+                        Margin="0,5,0,5"
+                        Click="CatDescriptionClickHandler"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+                <Button x:Name="customerButton" 
+                        HorizontalAlignment="Stretch"
+                        Content="О покупателе"
+                        Margin="0,0,0,5"
+                        Click="CustomerDescriptionClickHandler"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+                <Button x:Name="moneyButton" 
+                        HorizontalAlignment="Stretch"
+                        Content="О транзакции"
+                        Click="MoneyDescriptionClickHandler"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="catDescriptionStack" 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,40"
+                        Visibility="Hidden">
+                <Image x:Name="imageReview"/>
+                <TextBox x:Name="nameBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Кличка / Порода" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="weightBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Вес, Кг." 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="costBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Цена, $" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="customerStack"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,60"
+                        Visibility="Hidden">
+                <Image x:Name="customerImageBox" 
+                       Source="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png"/>
+                <TextBox x:Name="customerNameBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Имя" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="phoneBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Телефон" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="moneyStack"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,50"
+                        Visibility="Hidden">
+                <Image x:Name="moneyImageBox" 
+                       Source="https://assets.entrepreneur.com/content/3x2/2000/20200511130316-GettyImages-1082433942.jpeg?width=700crop=2:1" />
+                <TextBox x:Name="transactionNameBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Название транзакции" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="moneyCostBox" 
+                         IsEnabled="False"
+                         materialDesign:HintAssist.Hint="Стоимость, $" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            </StackPanel>
+
+            <Button x:Name="backButton" 
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Visibility="Hidden"
+                    Margin="0,20,0,0"
+                    Content="О продаже"
+                    Click="HideDescriptionClickHandler"
+                    Style="{StaticResource MaterialDesignFlatButton}"/>
+        </Grid>
+    </DockPanel>
+</Page>

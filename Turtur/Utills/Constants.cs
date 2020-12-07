@@ -52,5 +52,10 @@ namespace Turtur.Utills
             public const string StateNumber = "StateNumber";
             public const string Sale = "Sale";
         }
+
+        public static class LinkPhoto
+        {
+            public const string SaleLink = "https://static.garmincdn.com/gdc/home-page/featured/2020/_32357-top-nav-sale-OS.png";
+        }
     }
 }
