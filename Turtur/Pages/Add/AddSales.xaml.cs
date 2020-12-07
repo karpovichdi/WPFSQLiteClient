@@ -111,7 +111,7 @@ namespace Turtur.Pages.Add
 
         private void SaveClickHandler(object sender, RoutedEventArgs e) 
         {
-            if (_lastSelectedCat == null || _lastSelectedCustomer == null) 
+            if (_lastSelectedCat == null || _lastSelectedCustomer == null || string.IsNullOrEmpty(MaterialCalendar.SelectedDate.ToString())) 
             {
                 return;
             }

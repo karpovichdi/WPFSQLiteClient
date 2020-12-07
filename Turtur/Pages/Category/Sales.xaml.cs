@@ -85,7 +85,10 @@ namespace Turtur.Pages.Category
                 var sale = e.AddedItems[0] as Sale;
                 if (sale != null)
                 {
-                    materialCalendar.SelectedDate = Convert.ToDateTime(sale.DATE);
+                    if (!string.IsNullOrEmpty(sale.Date)) 
+                    {
+                        materialCalendar.SelectedDate = Convert.ToDateTime(sale.DATE);
+                    }
 
                     ShowCalendarStack();
 
